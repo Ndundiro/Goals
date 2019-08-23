@@ -1,13 +1,19 @@
 <div class="container">
-    <h1 class="text-center">MY GOALS</h1>
-    <hr>
+    <!-- <ng-progress></ng-progress> -->
+    <h1 class="display-4 text-center">MY GOALS App</h1>
+    <hr class="my-6">
+ <!-- <p class="lead text-center">
+    An Angular app that let's you create your goals and gives you quotes from the world of computing 
+</p>  -->
 
     <div class="row">
         <div class="col-md-6">
             <div *ngFor="let goal of goals;let i = index">
                 <div>
                     <h6 id={{i}} appStrikethrough>{{goal.name}} due on {{goal.completeDate|date|uppercase}}</h6>
-                    <button (click)="toggleDetails(i)" class="btn btn-primary">Toggle Details</button>
+                    <button class="btn btn-primary" (click)='goToUrl(goal.id)'>View Details</button>
+                    <!-- <button (click)="toggleDetails(i)" class="btn btn-primary">Toggle Details</button> -->
+                    <button class="btn btn-outline-danger" (click)='deleteGoal(i)'>Delete Goal</button>
                 </div>
 
                 <div *ngIf="goal.showDescription">
@@ -20,4 +26,11 @@
         </div>
     </div>
     <p *ngIf="goals.length > 5">You have too many goals</p>
+
+    <div class="row">
+        <blockquote class="blockquote text-center">
+            <p class="mb-0">{{quote.quote}}</p>
+            <footer class="blockquote-footer"><cite>{{quote.author}}</cite></footer>
+        </blockquote>
+    </div>
 </div>
